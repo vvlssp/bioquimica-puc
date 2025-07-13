@@ -6,6 +6,7 @@ const ramos = [
   { id: "quimica_general_i", nombre: "Química General I", creditos: 10, requisitos: [] },
   { id: "pre_calculo", nombre: "Pre Cálculo", creditos: 10, requisitos: [] },
   { id: "filosofia", nombre: "Filosofía: ¿Para qué?", creditos: 10, requisitos: [] },
+
   { id: "fisica_ciencias", nombre: "Física para Ciencias", creditos: 10, requisitos: [] },
   { id: "lab_fisica", nombre: "Lab. Física para Ciencias", creditos: 0, requisitos: [] },
   { id: "quimica_general_ii", nombre: "Química General II", creditos: 10, requisitos: ["quimica_general_i", "lab_quimica_general"] },
@@ -21,6 +22,7 @@ const ramos = [
   { id: "electivo_deportivo", nombre: "Electivo Deportivo", creditos: 10, requisitos: [] },
   { id: "electivo_2", nombre: "Electivo", creditos: 10, requisitos: [] },
   { id: "electivo_3", nombre: "Electivo", creditos: 10, requisitos: [] },
+
   { id: "bioetica", nombre: "Bioética", creditos: 10, requisitos: ["biologia_celula"] },
   { id: "bio_microorganismos", nombre: "Biología de los Microorganismos", creditos: 10, requisitos: ["biologia_celula"] },
   { id: "quimica_organica_ii", nombre: "Química Orgánica II", creditos: 10, requisitos: ["quimica_organica_i"] },
@@ -52,7 +54,7 @@ const ramos = [
   { id: "tecnicas_avanzadas", nombre: "Técnicas Avanzadas en Bioquímica", creditos: 50, requisitos: [] },
   { id: "optativos_titulo", nombre: "Optativos de Profundización Título", creditos: 50, requisitos: [] },
   { id: "memoria_investigacion", nombre: "Memoria de Investigación", creditos: 50, requisitos: [] },
-  { id: "memoria_profesional", nombre: "Memoria Profesional", creditos: 50, requisitos: [] },
+  { id: "memoria_profesional", nombre: "Memoria Profesional", creditos: 50, requisitos: [] }
 ];
 
 let creditosTotales = 0;
@@ -64,12 +66,11 @@ function actualizarCreditos() {
 }
 
 function crearRamo(ramo) {
-  const div = document.createElement("div");
-  div.className = "ramo bloqueado";
-  div.id = ramo.id;
+  const div = document.getElementById(ramo.id);
+  if (!div) return;
+  div.classList.add("bloqueado");
   div.textContent = `${ramo.nombre} (${ramo.creditos} cr)`;
   div.addEventListener("click", () => aprobarRamo(ramo));
-  malla.appendChild(div);
 }
 
 function aprobarRamo(ramo) {
